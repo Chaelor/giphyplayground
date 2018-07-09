@@ -99,23 +99,33 @@ body {
 * Main
 */
 
+.main-rules{
+    margin:5px;
+}
+
 .main-container{
-    width: 1100px;
-    margin: 50px auto 0 auto;
+    width: 900px;
+    margin: 20px auto 0 auto;
+    background-color: rgba(119, 119, 119, 0.80);
+    border-radius: 5px;
 }
 
 .new-button{
     width: 300px;
-    height: 85px;
-    background-color: #777;
+    height: 90px;background-image: linear-gradient(
+        to right bottom,
+        rgba(126, 213, 111, .8),
+        rgba(40, 180, 131, .8)
+    );
     position: fixed;
     right: 20%;
+    top: 120px;
     border-radius: 10px;
 }
 
-.new-button textarea {
+.new-button .textarea {
     width: 250px;
-    height: 25px;
+    height: 27px;
     display: block;
     margin: 10px auto;
     resize: none;
@@ -131,5 +141,16 @@ body {
 */
 
 .main-btn--styles {
-    margin: 10px 10px;
+    margin: 10px 5px;
+    left: 0;
+}
+
+button:hover{
+    transform:translateY(-4px);
+    box-shadow: 0 10px 15px rgba(0,0,0, .2);
+}
+
+button:active{
+    transform:translateY(-2px);
+    box-shadow: 0 5rem 10rem rgba(0,0,0, .2);
 }
