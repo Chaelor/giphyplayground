@@ -35,17 +35,30 @@ footer{
     width: 100%;
     font-family: 'Kurale', serif;
 }
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -3;
+}
 
-body {
+.background{
     background-image: linear-gradient(
         to right bottom,
         rgba(126, 213, 111, .8),
         rgba(40, 180, 131, .8)
-    ), url(../images/hero.jpeg);
+    );
+    min-width: 100%;
+    min-height: 100%;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment:fixed;
+    z-index: -2;
+    position:fixed;
 }
+
 
 /************
 * Copy pasta nav and footer push
@@ -109,15 +122,13 @@ body {
     background-color: rgba(119, 119, 119, 0.80);
     border-radius: 5px;
     padding: 5px 0;
+    z-index: 1;
 }
 
 .new-button{
     width: 300px;
-    height: 90px;background-image: linear-gradient(
-        to right bottom,
-        rgba(126, 213, 111, .8),
-        rgba(40, 180, 131, .8)
-    );
+    height: 90px;
+    background-color: #4aaaa5;
     float: right;
     border-radius: 10px;
     margin: 15px 20px;
