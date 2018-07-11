@@ -1,4 +1,5 @@
 $("document").ready(function () {
+
     //HTML selectors
     var buttons = $(".buttons");
     var newButton = $(".new-button");
@@ -9,33 +10,40 @@ $("document").ready(function () {
     var storageArray = [];
 
     //Storage for keys
-    var storageCounter = 0;
+    var storageCounter = 1;
     var fromStorage = getStorage();
 
     //Retrieve past button submissions
     function getStorage() {
 
-
+        //Create an array that will have key equal to local storage. key being "keys-#" value-i"
         var values = [],
             keys = Object.keys(localStorage),
             i = keys.length;
 
-        while (i--) {
-            values.push(localStorage.getItem(keys[i]));
+        //Loop through localstorage and return keys
+        for (var i = 0; i < localStorage.length; i++) {
+
+            keys = Object.keys(localStorage),
+                values.push(localStorage.getItem(keys[i]));
+
         }
 
+        //return the values array
         return values;
     }
 
-
     //Initial render for 3 animal buttons
     function buttonRender() {
+
         //Make the HTML blank for future loadings of this
         buttons.html("");
+
         //For animals in the btn array, create buttons
         for (let i = 0; i < btnArray.length; i++) {
             buttons.append("<button data-gif='" + btnArray[i] + "' class='btn main-btn--styles'>" + btnArray[i] + "</button>");
         }
+
         //For the items in storage loop through array
         for (let i = 0; i < fromStorage.length; i++) {
             //Set the variable storedKey = to the item in the array
@@ -50,6 +58,15 @@ $("document").ready(function () {
         //Clear the from storage array.
         fromStorage = [];
     }
+
+    //On enter key down, submit the form
+    $('body').on("keydown", ".input", function (e) {
+        //If the use hits enter and only enter
+        if (e.which == 13) {
+            //Click the submit button
+            $('#submit').click();
+        }
+    });
 
     //On click functionality for submit button
     $("body").on("click", "#submit", function () {
@@ -90,7 +107,7 @@ $("document").ready(function () {
         //Clear the btnArray
         btnArray = [];
         //Clear the storage counter
-        storageCounter = 0;
+        storageCounter = 1;
         //Re-populate array with inital choices
         btnArray = ["Cat", "Dog", "Lizard"];
         //Create the three initial buttons
@@ -124,7 +141,7 @@ $("document").ready(function () {
 
                 //Log what you get into the results variable
                 var results = response.data;
-                console.log(response);
+                
                 //Display all the gif returned. Loop through them all
                 for (let i = 0; i < results.length; i++) {
                     //Declaring variables
@@ -171,13 +188,12 @@ $("document").ready(function () {
             $(this).attr("src", still);
             //Change the data-state to still
             $(this).attr("data-state", "still")
-        }//I SHOULD HAVE PUT THIS IN THE ELSE STATEMENT BUT YOLO
+        }//I SHOULD HAVE PUT THIS IN THE ELSE STATEMENT BUT YOLO -- jk 200 lines even
         if (state === "still") {
             $(this).attr("src", animate);
             $(this).attr("data-state", "animated");
         }
     })
-
 
     //Initial button render call.
     buttonRender();
