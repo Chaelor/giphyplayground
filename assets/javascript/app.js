@@ -37,7 +37,6 @@ $("document").ready(function () {
                 console.log(response.data);
                 //Display all the gif returned. Loop through them all
                 for (let i = 0; i < results.length; i++) {
-                    //Declaring variables
                     //Store a div selector into gifDiv
                     var gifDiv = $("<div class='item'>");
                     //Store the rating from the gif into a var
@@ -188,9 +187,13 @@ $("document").ready(function () {
 
         //If statement works properly, to work on getting additional gifs simply remove "gifDisplay.empty from if scope".
         if (userChoice === lastChoice) {
+            //Building functionality for adding more gifs
             gifDisplay.empty();
+            //Seeing if the if works
             console.log("if");
+            //Set the gifGet to this.attr for whatever is clicked
             gifGet = $(this).attr("data-gif");
+            //Run function for apiCall
             apiCall();
         } else {
             gifDisplay.empty();
