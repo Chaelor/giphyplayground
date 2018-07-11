@@ -15,6 +15,7 @@ $("document").ready(function () {
     //Retrieve past button submissions
     function getStorage() {
 
+        
         var values = [],
             keys = Object.keys(localStorage),
             i = keys.length;
