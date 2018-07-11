@@ -12,7 +12,67 @@ $("document").ready(function () {
     //Storage for keys
     var storageCounter = 1;
     var fromStorage = getStorage();
+    var gifGet;
 
+    //Actual variables
+    var lastChoice = "";
+
+    function apiCall() {
+
+        //Concatenate the URL
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            gifGet + "&api_key=dc6zaTOxFJmzC&limit=10";
+        
+        //Async javascript and xml call
+        $.ajax({
+            //This is the concatenated URL 
+            url: queryURL,
+            //Method for the ajax call
+            method: "GET"
+        })//THIS IS THE PROMISE
+            .then(function (response) {
+
+                //Log what you get into the results variable
+                var results = response.data;
+                console.log(response.data);
+                //Display all the gif returned. Loop through them all
+                for (let i = 0; i < results.length; i++) {
+                    //Declaring variables
+                    //Store a div selector into gifDiv
+                    var gifDiv = $("<div class='item'>");
+                    //Store the rating from the gif into a var
+                    var rating = results[i].rating;
+                    //Store the title
+                    var gifTitle = results[i].title;
+                    //Store a p tag and the rating into "p"
+                    var pRating = $("<p>").text("Rating: " + rating.toUpperCase());
+                    //Store a p tag and the title
+                    var pTitle = $("<p class='uppercase'>").text("Gif Title: " + gifTitle.toUpperCase());
+                    //Store an img tag in variable gifImage
+                    var gifImage = $("<img class='active'>");
+                    //Make a button to download the gif
+                    var buttonDownloader = $("<a href='" + results[i].images.fixed_height.url + "' download class='main-a-download' target='_blank'>").text("Download!");
+
+                    //Give the img tag above a source to display the picture 
+                    gifImage.attr("src", results[i].images.fixed_height.url);
+                    //Give the img tag an animate data-attr
+                    gifImage.attr("data-animate", results[i].images.fixed_height.url);
+                    //Give the img tag a still data-attribute
+                    gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    //Give the gif a class to signal whether it is still or not.
+                    gifImage.attr("data-state", "animated");
+                    //Add the download link!
+                    gifDiv.prepend(buttonDownloader);
+                    //Display the image in the gif var
+                    gifDiv.prepend(gifImage);
+                    //Add the title and rating p tag before the image
+                    gifDiv.prepend(pRating);
+                    gifDiv.prepend(pTitle);
+                    //Display the rating and gif image in actual html
+                    gifDisplay.prepend(gifDiv);
+                };
+            });
+    }
     //Retrieve past button submissions
     function getStorage() {
 
@@ -41,7 +101,7 @@ $("document").ready(function () {
 
         //For animals in the btn array, create buttons
         for (let i = 0; i < btnArray.length; i++) {
-            buttons.append("<button data-gif='" + btnArray[i] + "' class='btn main-btn--styles'>" + btnArray[i] + "</button>");
+            buttons.append("<button data-gif='" + btnArray[i] + "' class='btn main-btn--styles produceGifs' id='" + btnArray[i] + "'>" + btnArray[i] + "</button>");
         }
 
         //For the items in storage loop through array
@@ -53,7 +113,7 @@ $("document").ready(function () {
             //Push what the user had saved into an array.
             btnArray.push(storedKey);
             //Make the buttons appear in the buttons display area
-            buttons.append("<button data-gif='" + storedKey + "' class='btn main-btn--styles'>" + storedKey + "</button>");
+            buttons.append("<button data-gif='" + storedKey + "' class='btn main-btn--styles produceGifs'id='" + storedKey + "'>" + storedKey + "</button>");
         }
         //Clear the from storage array.
         fromStorage = [];
@@ -112,65 +172,33 @@ $("document").ready(function () {
         btnArray = ["Cat", "Dog", "Lizard"];
         //Create the three initial buttons
         for (let i = 0; i < btnArray.length; i++) {
-            buttons.append("<button data-gif='" + btnArray[i] + "' class='btn main-btn--styles'>" + btnArray[i] + "</button>");
+            buttons.append("<button data-gif='" + btnArray[i] + "' class='btn main-btn--styles produceGifs'>" + btnArray[i] + "</button>");
         }
         //Clear gif area
         gifDisplay.empty();
     });
-
+    
     //Clicked on an animal button do this
-    $("body").on("click", ".main-btn--styles", function () {
-        //Clear the HTML where the GIFs are displayed
-        gifDisplay.html("");
+    $("body").on("click", ".produceGifs", function (e) {
+        //Set the userChoice to the ID of the button that was clicked
+        let userChoice = e.target.id;
 
-        //Get the data you will be searching
-        var gifGet = $(this).attr("data-gif");
+        //Convert user choice to a string
+        userChoice = userChoice.toString();
 
-        //Concatenate the URL
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-            gifGet + "&api_key=dc6zaTOxFJmzC&limit=10";
-
-        //Async javascript and xml call
-        $.ajax({
-            //This is the concatenated URL 
-            url: queryURL,
-            //Method for the ajax call
-            method: "GET"
-        })//THIS IS THE PROMISE
-            .then(function (response) {
-
-                //Log what you get into the results variable
-                var results = response.data;
-                
-                //Display all the gif returned. Loop through them all
-                for (let i = 0; i < results.length; i++) {
-                    //Declaring variables
-                    //Store a div selector into gifDiv
-                    var gifDiv = $("<div class='item'>");
-                    //Store the rating from the gif into a var
-                    var rating = results[i].rating;
-                    //Store a p tag and the rating into "p"
-                    var p = $("<p>").text("Rating: " + rating);
-                    //Store an img tag in variable gifImage
-                    var gifImage = $("<img class='active'>");
-
-                    //Give the img tag above a source to display the picture 
-                    gifImage.attr("src", results[i].images.fixed_height.url);
-                    //Give the img tag an animate data-attr
-                    gifImage.attr("data-animate", results[i].images.fixed_height.url);
-                    //Give the img tag a still data-attribute
-                    gifImage.attr("data-still", results[i].images.fixed_height_still.url);
-                    //Give the gif a class to signal whether it is still or not.
-                    gifImage.attr("data-state", "animated");
-                    //Add the rating p tag after the image
-                    gifDiv.prepend(p);
-                    //Display the image in the gif var
-                    gifDiv.prepend(gifImage);
-
-                    //Display the rating and gif image in actual html
-                    gifDisplay.prepend(gifDiv);
-                };
-            });
+        //If statement works properly, to work on getting additional gifs simply remove "gifDisplay.empty from if scope".
+        if (userChoice === lastChoice) {
+            gifDisplay.empty();
+            console.log("if");
+            gifGet = $(this).attr("data-gif");
+            apiCall();
+        } else {
+            gifDisplay.empty();
+            lastChoice = userChoice;
+            console.log("else");
+            gifGet = $(this).attr("data-gif");
+            apiCall();
+        }
     });
 
     //Click on a gif

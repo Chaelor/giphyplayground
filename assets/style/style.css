@@ -35,6 +35,15 @@ footer{
     width: 100%;
     font-family: 'Kurale', serif;
 }
+
+p {
+    margin: 2.5px;
+}
+
+/************ 
+* Background CSS
+*/
+
 #myVideo {
     position: fixed;
     right: 0;
@@ -124,9 +133,7 @@ footer{
     padding: 2.5px 0;
     z-index: 1;
     font-family: 'Raleway', sans-serif;
-}
-p {
-    margin: 2.5px;
+    padding-top:10px;
 }
 
 .new-button{
@@ -162,6 +169,18 @@ p {
 .gif-display img {
     border-radius: 5px;
 }
+
+.item {
+    max-width: 98%;
+    height: 285px;
+    padding: 10px;
+    margin-bottom: 30px;
+    border: 2px;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+
 /************
 * BUTTONS!
 */
@@ -169,6 +188,21 @@ p {
 .main-btn--styles {
     margin: 10px 5px;
     left: 0;
+}
+
+.main-a-download {
+    text-decoration: none;
+    margin-left:10px;
+    text-align: center;
+    background-color: #4aaaa5;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+}
+.main-a-download:hover{
+    text-decoration: none;
+    color: white;
+    box-shadow: 0 0 15px rgba(0,0,0, .5);
 }
 
 button:hover{
@@ -180,4 +214,3 @@ button:active{
     transform:translateY(-2px);
     box-shadow: 0 5rem 10rem rgba(0,0,0, .2);
 }
-
