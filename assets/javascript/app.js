@@ -34,6 +34,21 @@ $("document").ready(function () {
             buttonRender();
         }
     })
+
+    //On click functionality for reset button
+    $("body").on("click", "#reset", function(){
+        ///Empty the buttons div
+        $(".buttons").empty();
+        //Clear the btnArray
+        btnArray = [];
+        //Re-populate array with inital choices
+        btnArray = ["Cat", "Dog", "Lizard"];
+        //Create the three initial buttons
+        for (let i = 0; i < btnArray.length; i++) {
+            buttons.append("<button data-gif='" + btnArray[i] + "' class='btn main-btn--styles'>" + btnArray[i] + "</button>");
+        }
+    });
+    
     //Clicked on an animal button do this
     $("body").on("click", ".main-btn--styles", function () {
         //Clear the HTML where the GIFs are displayed
@@ -110,6 +125,8 @@ $("document").ready(function () {
             $(this).attr("data-state", "animated");
         }
     })
+
+    
     //Initial button render call.
     buttonRender();
 });
