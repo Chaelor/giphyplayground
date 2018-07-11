@@ -15,7 +15,7 @@ $("document").ready(function () {
     //Retrieve past button submissions
     function getStorage() {
 
-        
+
         var values = [],
             keys = Object.keys(localStorage),
             i = keys.length;
@@ -97,6 +97,8 @@ $("document").ready(function () {
         for (let i = 0; i < btnArray.length; i++) {
             buttons.append("<button data-gif='" + btnArray[i] + "' class='btn main-btn--styles'>" + btnArray[i] + "</button>");
         }
+        //Clear gif area
+        gifDisplay.empty();
     });
 
     //Clicked on an animal button do this
