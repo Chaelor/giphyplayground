@@ -6,6 +6,26 @@ $("document").ready(function () {
 
     //Where we will store our buttons
     var btnArray = ["Cat", "Dog", "Lizard"];
+    var storageArray = [];
+
+    //Storage for keys
+    var storageCounter = 0;
+    var fromStorage = getStorage();
+
+    //Retrieve past button submissions
+    function getStorage() {
+
+        var values = [],
+            keys = Object.keys(localStorage),
+            i = keys.length;
+
+        while (i--) {
+            values.push(localStorage.getItem(keys[i]));
+        }
+
+        return values;
+    }
+
 
     //Initial render for 3 animal buttons
     function buttonRender() {
@@ -15,6 +35,19 @@ $("document").ready(function () {
         for (let i = 0; i < btnArray.length; i++) {
             buttons.append("<button data-gif='" + btnArray[i] + "' class='btn main-btn--styles'>" + btnArray[i] + "</button>");
         }
+        //For the items in storage loop through array
+        for (let i = 0; i < fromStorage.length; i++) {
+            //Set the variable storedKey = to the item in the array
+            let storedKey = fromStorage[i];
+            //Add one to the storage counter so the counter knows where to count from when user submits more data
+            storageCounter++;
+            //Push what the user had saved into an array.
+            btnArray.push(storedKey);
+            //Make the buttons appear in the buttons display area
+            buttons.append("<button data-gif='" + storedKey + "' class='btn main-btn--styles'>" + storedKey + "</button>");
+        }
+        //Clear the from storage array.
+        fromStorage = [];
     }
 
     //On click functionality for submit button
@@ -30,17 +63,33 @@ $("document").ready(function () {
             $(".textarea").val("")
             //Push the text to the btnArray
             btnArray.push(makeNewButton);
+            //Push button into storage array
+            storageArray.push(makeNewButton);
+            //Loop through the storage array to give the array index a key and store it
+            for (let i = 0; i < storageArray.length; i++) {
+                //Set a key in storage equal to "item=whatever item #"
+                localStorage.setItem("item-" + storageCounter, storageArray[i]);
+            }
             //Render the buttons
             buttonRender();
+            //Add one to the storage counter
+            storageCounter++;
         }
+
     })
 
     //On click functionality for reset button
-    $("body").on("click", "#reset", function(){
+    $("body").on("click", "#reset", function () {
         ///Empty the buttons div
         $(".buttons").empty();
+        //Clear storage
+        localStorage.clear();
+        //Clear text area
+        $(".textarea").val("");
         //Clear the btnArray
         btnArray = [];
+        //Clear the storage counter
+        storageCounter = 0;
         //Re-populate array with inital choices
         btnArray = ["Cat", "Dog", "Lizard"];
         //Create the three initial buttons
@@ -48,7 +97,7 @@ $("document").ready(function () {
             buttons.append("<button data-gif='" + btnArray[i] + "' class='btn main-btn--styles'>" + btnArray[i] + "</button>");
         }
     });
-    
+
     //Clicked on an animal button do this
     $("body").on("click", ".main-btn--styles", function () {
         //Clear the HTML where the GIFs are displayed
@@ -126,7 +175,7 @@ $("document").ready(function () {
         }
     })
 
-    
+
     //Initial button render call.
     buttonRender();
 });
