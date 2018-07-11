@@ -53,13 +53,13 @@ $("document").ready(function () {
                     var buttonDownloader = $("<a href='" + results[i].images.fixed_height.url + "' download class='main-a-download' target='_blank'>").text("Download!");
 
                     //Give the img tag above a source to display the picture 
-                    gifImage.attr("src", results[i].images.fixed_height.url);
+                    gifImage.attr("src", results[i].images.fixed_height_still.url);
                     //Give the img tag an animate data-attr
                     gifImage.attr("data-animate", results[i].images.fixed_height.url);
                     //Give the img tag a still data-attribute
                     gifImage.attr("data-still", results[i].images.fixed_height_still.url);
                     //Give the gif a class to signal whether it is still or not.
-                    gifImage.attr("data-state", "animated");
+                    gifImage.attr("data-state", "still");
                     //Add the download link!
                     gifDiv.prepend(buttonDownloader);
                     //Display the image in the gif var
