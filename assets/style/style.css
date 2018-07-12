@@ -168,7 +168,7 @@ p {
 */
 
 .main-btn--styles {
-    margin: 10px 5px;
+    margin: 10px 10px;
     left: 0;
 }
     
@@ -188,13 +188,13 @@ p {
     box-shadow: 0 0 15px rgba(0,0,0, .5);
 }
 
+
 .active {
     cursor: pointer;
     margin-top: 5px;
 }
 .active:hover {
     outline: 5px solid #4aaaa5;
-    outline-offset: 5px;
 }
 button:hover{
     transform:translateY(-4px);
