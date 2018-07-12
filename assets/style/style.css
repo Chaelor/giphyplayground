@@ -8,7 +8,6 @@
 /************
 * Global 
 */
-
 body, html{
     width:100%;
     height: 100%;
@@ -127,14 +126,10 @@ p {
     margin: 20px auto 0 auto;
     background-color: #D4D4D4;
     border-radius: 5px;
-    padding: 15px 15px 0 15px;
+    padding: 20px;
     z-index: 1;
     font-family: 'Raleway', sans-serif;
     padding-top:10px;
-}
-
-.buttons{
-    margin-bottom: 15px;
 }
 
 .new-button{
@@ -160,24 +155,14 @@ p {
     text-align: center;
 }
 
-.gif-display{
-    margin-left: 10px;
-}
-
-.gif-display img {
-    border-radius: 5px;
-}
-
 .item {
-    max-width: 98%;
-    height: 285px;
-    padding: 10px;
-    margin-bottom: 30px;
+    max-width: 100%;
+    margin-top: 15px;
     border: 2px;
     border-style: solid;
     border-radius: 5px;
+    padding: 20px;
 }
-
 
 /************
 * BUTTONS!
@@ -187,16 +172,17 @@ p {
     margin: 10px 5px;
     left: 0;
 }
-
+    
 .main-a-download {
     text-decoration: none;
-    margin-left:10px;
+    margin-left:15px;
     text-align: center;
     background-color: #4aaaa5;
     color: white;
     padding: 20px;
     border-radius: 5px;
 }
+
 .main-a-download:hover{
     text-decoration: none;
     color: white;
@@ -205,8 +191,12 @@ p {
 
 .active {
     cursor: pointer;
+    margin-top: 5px;
 }
-
+.active:hover {
+    outline: 5px solid #4aaaa5;
+    outline-offset: 5px;
+}
 button:hover{
     transform:translateY(-4px);
     box-shadow: 0 10px 15px rgba(0,0,0, .2);
