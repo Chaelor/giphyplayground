@@ -35,10 +35,6 @@ footer{
     font-family: 'Kurale', serif;
 }
 
-p {
-    margin: 2.5px;
-}
-
 /************ 
 * Background CSS
 */
@@ -122,7 +118,7 @@ p {
 
 
 .main-container{
-    width: 900px;
+    max-width: 900px;
     margin: 20px auto 0 auto;
     background-color: #D4D4D4;
     border-radius: 5px;
@@ -135,16 +131,14 @@ p {
     width: 300px;
     height: 105px;
     background-color: #4aaaa5;
-    float: right;
     border-radius: 10px;
     margin: 15px 20px;
     padding: 5px 5px;
 }
 
 .new-button .textarea {
-    width: 200px;
+    width: 100%;
     height: 27px;
-    display: block;
     margin: 10px auto;
     resize: none;
     border-radius: 2px;
@@ -204,4 +198,74 @@ button:hover{
 button:active{
     transform:translateY(-2px);
     box-shadow: 0 5rem 10rem rgba(0,0,0, .2);
+}
+
+
+@media only screen and (max-width: 920px) {
+    .main-container{
+        max-width: 720px;
+    }
+}
+
+@media only screen and (max-width: 740px) {
+    .main-container{
+        max-width: 520px;
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .main-container{
+        max-width: 300px;
+    }
+
+    .new-button{
+        margin-left: 0;
+        width: 100%;
+        height: 105px;
+        background-color: #4aaaa5;
+        border-radius: 10px;
+        padding: 5px 5px;
+    }
+
+    .item {
+        max-width: 100%;
+        margin-top: 15px;
+        border-left: 2px;
+        border-right: 2px;
+        border-radius: 0;
+        padding: 20px;
+        position: relative;
+        height: 375px;
+    }
+
+    .active{
+        position: relative;
+    }
+    #myVideo {
+        display:none;
+    }
+
+    .main-a-download {
+        top: 200px;
+        margin-left: 0;
+        display: absolute;
+    }
+}
+@media only screen and (max-width: 320px) {
+    .container{
+        margin: 0;
+        padding:0;
+        width:100%;
+    }
+
+    .main-container{
+        width: 100%;
+        padding:0px;
+    }
+
+    .item{
+        width: 100%;
+        padding: 0px;
+
+    }
 }

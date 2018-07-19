@@ -61,7 +61,7 @@ $("document").ready(function () {
                     //Give the gif a class to signal whether it is still or not.
                     gifImage.attr("data-state", "still");
                     //Add the download link!
-                    gifDiv.prepend(buttonDownloader);
+                    gifDiv.append(buttonDownloader);
                     //Display the image in the gif var
                     gifDiv.prepend(gifImage);
                     //Add the title and rating p tag before the image
@@ -119,11 +119,11 @@ $("document").ready(function () {
     }
 
     //On enter key down, submit the form
-    $('body').on("keydown", ".input", function (e) {
+    $('#chat-input').on("keydown", function (e) {
         //If the use hits enter and only enter
         if (e.which == 13) {
             //Click the submit button
-            $('#submit').click();
+            $('#click-button').click();
         }
     });
 
