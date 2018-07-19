@@ -50,18 +50,18 @@ $("document").ready(function () {
                     //Store an img tag in variable gifImage
                     var gifImage = $("<img class='active'>");
                     //Make a button to download the gif
-                    var buttonDownloader = $("<a href='" + results[i].images.fixed_height.url + "' download class='main-a-download' target='_blank'>").text("Download!");
+                    var buttonDownloader = $("<a href='" + results[i].images.fixed_width.url + "' download class='main-a-download' target='_blank'>").text("Download!");
 
                     //Give the img tag above a source to display the picture 
-                    gifImage.attr("src", results[i].images.fixed_height_still.url);
+                    gifImage.attr("src", results[i].images.fixed_width_still.url);
                     //Give the img tag an animate data-attr
-                    gifImage.attr("data-animate", results[i].images.fixed_height.url);
+                    gifImage.attr("data-animate", results[i].images.fixed_width.url);
                     //Give the img tag a still data-attribute
-                    gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    gifImage.attr("data-still", results[i].images.fixed_width_still.url);
                     //Give the gif a class to signal whether it is still or not.
                     gifImage.attr("data-state", "still");
                     //Add the download link!
-                    gifDiv.append(buttonDownloader);
+                    gifDiv.prepend(buttonDownloader);
                     //Display the image in the gif var
                     gifDiv.prepend(gifImage);
                     //Add the title and rating p tag before the image

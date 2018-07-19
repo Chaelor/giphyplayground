@@ -116,9 +116,8 @@ footer{
 * Main
 */
 
-
 .main-container{
-    max-width: 900px;
+    max-width: 750px;
     margin: 20px auto 0 auto;
     background-color: #D4D4D4;
     border-radius: 5px;
@@ -216,6 +215,7 @@ button:active{
 @media only screen and (max-width: 540px) {
     .main-container{
         max-width: 300px;
+        padding:10px;
     }
 
     .new-button{
@@ -229,26 +229,24 @@ button:active{
 
     .item {
         max-width: 100%;
-        margin-top: 15px;
         border-left: 2px;
         border-right: 2px;
         border-radius: 0;
-        padding: 20px;
+        padding: auto 0;
         position: relative;
-        height: 375px;
+        height: auto;
     }
 
-    .active{
-        position: relative;
-    }
     #myVideo {
         display:none;
     }
 
+    .active {
+        margin-bottom: 30px;
+    }
+
     .main-a-download {
-        top: 200px;
         margin-left: 0;
-        display: absolute;
     }
 }
 @media only screen and (max-width: 320px) {
@@ -264,8 +262,8 @@ button:active{
     }
 
     .item{
+        margin: 40px 0;
         width: 100%;
-        padding: 0px;
-
     }
+
 }
