@@ -154,6 +154,7 @@ footer{
     border-style: solid;
     border-radius: 5px;
     padding: 20px;
+    -webkit-border-radius: 5px;
 }
 
 /************
