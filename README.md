@@ -16,6 +16,7 @@ Users can also download gifs on a button press!
 
 Have fun!
 
+Link: https://chaelor.github.io/giphyplayground/
 
 ****************************
 Coming soon: Having it so that if a user clicks on the same gif/"more gifs" button, more gifs will be loaded.
